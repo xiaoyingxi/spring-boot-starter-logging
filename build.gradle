@@ -1,0 +1,100 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.1.RELEASE'
+	}
+	repositories {
+		mavenLocal()
+		maven {
+			name "aliyun1"
+			url 'http://maven.aliyun.com/nexus/content/groups/public'
+		}
+		maven {
+			name "aliyun2"
+			url 'http://maven.aliyun.com/mvn/repository/'
+		}
+		maven {
+			name "spring repo"
+			url "http://repo.spring.io/release"
+		}
+		maven {
+			name "spring milestone"
+			url "https://repo.spring.io/milestone/"
+		}
+		jcenter()
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+plugins {
+	id 'net.researchgate.release' version '2.6.0'
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.5.1'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'maven-publish'
+
+group = 'com.yuuyoo'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenLocal()
+	maven {
+		name "aliyun1"
+		url 'http://maven.aliyun.com/nexus/content/groups/public'
+	}
+	maven {
+		name "aliyun2"
+		url 'http://maven.aliyun.com/mvn/repository/'
+	}
+	maven {
+		name "spring repo"
+		url "http://repo.spring.io/release"
+	}
+	maven {
+		name "spring milestone"
+		url "https://repo.spring.io/milestone/"
+	}
+	jcenter()
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter')
+	compileOnly('org.projectlombok:lombok')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+jar.enabled = true
+bootJar.enabled = false
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+		maven {
+			// change to point to your repo, e.g. http://my.org/repo
+			url System.getenv('targetRepo')
+		}
+	}
+}
+
+release {
+	failOnUpdateNeeded = false
+	git {
+		requireBranch = /1.x|master/
+		pushToRemote = false
+	}
+}

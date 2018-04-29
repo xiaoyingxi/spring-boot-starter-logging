@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty name="APP_NAME" source="spring.application.name"/>
+    <include resource="logback-base.xml"/>
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"@target_index": "pilipa-${APP_NAME}"}</customFields>
+        </encoder>
+    </appender>
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+        <file>${LOG_PATH}/${LOG_FILE}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%i</fileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>10MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <logger name="jsonLogger" additivity="false" level="DEBUG">
+        <appender-ref ref="consoleAppender"/>
+        <appender-ref ref="FILE"/>
+    </logger>
+    <logger name="cn.pilipa" level="DEBUG"/>
+    <root level="INFO">
+        <appender-ref ref="consoleAppender"/>
+    </root>
+</configuration>
