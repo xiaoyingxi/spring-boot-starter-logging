@@ -5,10 +5,6 @@ buildscript {
 	repositories {
 		mavenLocal()
 		maven {
-			name "nexus"
-			url 'https://git.yuuyoo.com/repository/maven-public/'
-		}
-		maven {
 			name "aliyun1"
 			url 'http://maven.aliyun.com/nexus/content/groups/public'
 		}
@@ -24,6 +20,10 @@ buildscript {
 			name "spring milestone"
 			url "https://repo.spring.io/milestone/"
 		}
+		maven {
+			name "nexus"
+			url 'https://git.yuuyoo.com/repository/maven-public/'
+		}
 		jcenter()
 		mavenCentral()
 	}
@@ -32,11 +32,9 @@ buildscript {
 	}
 }
 
-/**
 plugins {
 	id 'net.researchgate.release' version '2.6.0'
 }
- **/
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '4.5.1'
@@ -54,10 +52,6 @@ sourceCompatibility = 1.8
 repositories {
 	mavenLocal()
 	maven {
-		name "nexus"
-		url 'https://git.yuuyoo.com/repository/maven-public/'
-	}
-	maven {
 		name "aliyun1"
 		url 'http://maven.aliyun.com/nexus/content/groups/public'
 	}
@@ -72,6 +66,10 @@ repositories {
 	maven {
 		name "spring milestone"
 		url "https://repo.spring.io/milestone/"
+	}
+	maven {
+		name "nexus"
+		url 'https://git.yuuyoo.com/repository/maven-public/'
 	}
 	jcenter()
 	mavenCentral()
@@ -107,7 +105,7 @@ publishing {
 	}
 }
 
-/**
+
 release {
 	failOnUpdateNeeded = false
 	git {
@@ -115,4 +113,4 @@ release {
 		pushToRemote = false
 	}
 }
- **/
+
