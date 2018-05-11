@@ -95,7 +95,7 @@ publishing {
 		maven {
 			// change to point to your repo, e.g. http://my.org/repo
 			//url "$buildDir/repo"
-			//url "https://git.yuuyoo.com/repository/maven-${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases'}/"
+			//url "https://nexus.yuuyoo.com/repository/maven-${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases'}/"
 			url System.getenv('targetRepo')
 			credentials {
 				username = "admin"
