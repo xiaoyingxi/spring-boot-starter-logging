@@ -1,4 +1,4 @@
-package com.yuuyoo.springbootstarterlogging;
+package com.yuuyoo.logging;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringBootStarterLoggingApplicationTests {
+public class LoggingApplicationTests {
 
 	@Test
 	public void contextLoads() {

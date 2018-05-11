@@ -5,6 +5,10 @@ buildscript {
 	repositories {
 		mavenLocal()
 		maven {
+			name "nexus"
+			url 'https://git.yuuyoo.com/repository/maven-public/'
+		}
+		maven {
 			name "aliyun1"
 			url 'http://maven.aliyun.com/nexus/content/groups/public'
 		}
@@ -28,9 +32,11 @@ buildscript {
 	}
 }
 
+/**
 plugins {
 	id 'net.researchgate.release' version '2.6.0'
 }
+ **/
 
 task wrapper(type: Wrapper) {
 	gradleVersion = '4.5.1'
@@ -47,6 +53,10 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenLocal()
+	maven {
+		name "nexus"
+		url 'https://git.yuuyoo.com/repository/maven-public/'
+	}
 	maven {
 		name "aliyun1"
 		url 'http://maven.aliyun.com/nexus/content/groups/public'
@@ -86,11 +96,18 @@ publishing {
 	repositories {
 		maven {
 			// change to point to your repo, e.g. http://my.org/repo
+			//url "$buildDir/repo"
+			//url "https://git.yuuyoo.com/repository/maven-${project.version.endsWith('-SNAPSHOT') ? 'snapshots' : 'releases'}/"
 			url System.getenv('targetRepo')
+			credentials {
+				username = "admin"
+				password = "admin123"
+			}
 		}
 	}
 }
 
+/**
 release {
 	failOnUpdateNeeded = false
 	git {
@@ -98,3 +115,4 @@ release {
 		pushToRemote = false
 	}
 }
+ **/

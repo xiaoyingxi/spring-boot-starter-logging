@@ -23,7 +23,7 @@
         <appender-ref ref="consoleAppender"/>
         <appender-ref ref="FILE"/>
     </logger>
-    <logger name="cn.pilipa" level="DEBUG"/>
+    <logger name="com.yuuyoo" level="DEBUG"/>
     <root level="INFO">
         <appender-ref ref="consoleAppender"/>
     </root>

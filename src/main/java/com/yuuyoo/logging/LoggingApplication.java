@@ -1,12 +1,12 @@
-package com.yuuyoo.springbootstarterlogging;
+package com.yuuyoo.logging;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootStarterLoggingApplication {
+public class LoggingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootStarterLoggingApplication.class, args);
+		SpringApplication.run(LoggingApplication.class, args);
 	}
 }
